@@ -4,7 +4,6 @@ import type React from "react"
 import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Lock, CheckCircle, Loader2, MapPin, X, CheckCheck, AlertTriangle, LockOpen } from "lucide-react"
@@ -422,36 +421,36 @@ export default function U1() {
   }, [selectedGender])
 
   const suspiciousKeywords = [
-  { word: "Travieso/a",      count: 13 },
-  { word: "Amor",            count: 22 },
-  { word: "Secreto",         count: 18 },
-  { word: "Oculto/a",          count: 11 },
-  { word: "No le digas",     count: 10 },
-  { word: "Noche",           count: 25 },
-  { word: "Te extraño",      count: 30 },
-  { word: "Besos",           count: 35 },
-  { word: "Te deseo",        count: 20 },
-  { word: "Solo tú y yo",    count: 15 },
-  { word: "Nadie sabe",      count: 12 },
-  { word: "Borra esto",      count: 18 },
-  { word: "Elimina el chat", count: 14 },
-  { word: "Mi amor",         count: 28 },
-  { word: "Cariño",          count: 24 },
-  { word: "Bebé",            count: 32 },
-  { word: "Papi / Mami",     count: 27 },
-  { word: "Hotel",           count: 16 },
-  { word: "Motel",           count: 12 },
-  { word: "Quedamos",        count: 19 },
-  { word: "Nos vemos",       count: 26 },
-  { word: "Cuando puedas",   count: 17 },
-  { word: "En secreto",      count: 14 },
-  { word: "Noche loca",      count: 11 },
-  { word: "Rico/a",          count: 21 },
-  { word: "Delicioso",       count: 15 },
-  { word: "Ven",             count: 23 },
-  { word: "Ya quiero verte", count: 29 },
-  { word: "Solo nosotros",   count: 13 },
-];
+    { word: "Travieso/a", count: 13 },
+    { word: "Amor", count: 22 },
+    { word: "Secreto", count: 18 },
+    { word: "Oculto/a", count: 11 },
+    { word: "No le digas", count: 10 },
+    { word: "Noche", count: 25 },
+    { word: "Te extraño", count: 30 },
+    { word: "Besos", count: 35 },
+    { word: "Te deseo", count: 20 },
+    { word: "Solo tú y yo", count: 15 },
+    { word: "Nadie sabe", count: 12 },
+    { word: "Borra esto", count: 18 },
+    { word: "Elimina el chat", count: 14 },
+    { word: "Mi amor", count: 28 },
+    { word: "Cariño", count: 24 },
+    { word: "Bebé", count: 32 },
+    { word: "Papi / Mami", count: 27 },
+    { word: "Hotel", count: 16 },
+    { word: "Motel", count: 12 },
+    { word: "Quedamos", count: 19 },
+    { word: "Nos vemos", count: 26 },
+    { word: "Cuando puedas", count: 17 },
+    { word: "En secreto", count: 14 },
+    { word: "Noche loca", count: 11 },
+    { word: "Rico/a", count: 21 },
+    { word: "Delicioso", count: 15 },
+    { word: "Ven", count: 23 },
+    { word: "Ya quiero verte", count: 29 },
+    { word: "Solo nosotros", count: 13 },
+  ]
 
   const filteredCountries = useMemo(
     () =>
@@ -630,18 +629,6 @@ export default function U1() {
     }
   }, [isCompleted, timeLeft])
 
-  useEffect(() => {
-    if (isCompleted) {
-      if (typeof (window as any).checkoutElements !== "undefined") {
-        try {
-          ;(window as any).checkoutElements.init("salesFunnel").mount("#hotmart-sales-funnel")
-        } catch (e) {
-          console.error("Failed to mount Hotmart widget:", e)
-        }
-      }
-    }
-  }, [isCompleted])
-
   const handleStartLoadingProcess = () => {
     const fullNumber = (selectedCountry.code + phoneNumber).replace(/[^0-9+]/g, "")
     if (fullNumber.length > 10) {
@@ -661,13 +648,8 @@ export default function U1() {
 
   return (
     <>
-
-      <Script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js" strategy="afterInteractive" />
-
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4 py-12">
         <main className="w-full max-w-md mx-auto text-center space-y-8">
-      
-
           <div className="flex items-center justify-center gap-2 text-green-500 font-semibold text-lg">
             <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488" />
@@ -1014,7 +996,55 @@ export default function U1() {
                         </p>
                       </div>
 
-                      <div id="hotmart-sales-funnel" className="w-full pt-4"></div>
+                      {/* --- MAIN BUTTON AND PRICE --- */}
+                      <a
+                        href="https://pay.hotmart.com/T101928947F?checkoutMode=10"
+                        className="mt-6 block w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg py-4 rounded-lg transition-colors shadow-lg hover:shadow-xl"
+                      >
+                        🔓 SÍ, QUIERO EL REPORTE COMPLETO
+                      </a>
+                      <div className="mt-4 text-center">
+                        <p className="text-gray-500">
+                          De <span className="line-through">$79</span> por solo
+                        </p>
+                        <p className="text-4xl font-bold text-green-600">$37</p>
+                        <p className="text-xs text-gray-400 mt-1">(Pago Único)</p>
+                      </div>
+
+                      {/* --- TRUST & GUARANTEE AREA (All Translated) --- */}
+                      <div className="mt-8 border-t pt-6">
+                        {/* 1. Social Proof */}
+                        <div className="flex items-center justify-center gap-2 text-yellow-500">
+                          <span>★★★★★</span>
+                          <span className="text-gray-600 font-medium text-sm">4.9/5.0</span>
+                        </div>
+                        <p className="text-sm text-gray-500 mt-1">Basado en 15,783 clientes satisfechos.</p>
+
+                        {/* 2. Guarantee */}
+                        <div className="mt-6 flex items-center justify-center gap-3 bg-gray-50 p-3 rounded-lg">
+                          <img
+                            src="/images/design-mode/guarantee.png"
+                            alt="Guarantee Seal"
+                            className="h-12 w-12 opacity-70"
+                          />
+                          <div>
+                            <h4 className="font-bold text-gray-800 text-left">Garantía de 7 Días</h4>
+                            <p className="text-xs text-gray-600 text-left">
+                              Tu satisfacción o te devolvemos tu dinero. Cero riesgo para ti.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* 3. Security Seals */}
+                        <div className="mt-4">
+                          <p className="text-xs text-gray-400 mb-2">Pago 100% Seguro</p>
+                          <img
+                            src="/images/secure-payment-badge2.png"
+                            alt="Secure Payment Badges"
+                            className="mx-auto h-6 opacity-80"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
