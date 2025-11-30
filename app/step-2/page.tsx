@@ -1007,7 +1007,7 @@ export default function U1() {
                         <p className="text-gray-500">
                           De <span className="line-through">$79</span> por solo
                         </p>
-                        <p className="text-4xl font-bold text-green-600">$37</p>
+                        <p className="text-4xl font-bold text-green-600">$27</p>
                         <p className="text-xs text-gray-400 mt-1">(Pago Único)</p>
                       </div>
 
