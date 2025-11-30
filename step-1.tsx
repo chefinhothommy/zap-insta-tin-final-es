@@ -28,7 +28,7 @@ export default function Step1() {
       {/* =================================== */}
       <section className="bg-gradient-to-br from-[#1d1d3a] via-[#2a2a4b] to-[#3a2c6b] text-white py-16 px-4 overflow-hidden">
         <div className="container mx-auto max-w-3xl text-center flex flex-col items-center">
-          <div className="bg-gradient-to-br from-pink-500 to-red-500 p-4 rounded-2xl mb-8 shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-darkgreen-500 p-4 rounded-2xl mb-8 shadow-lg">
    <FaWhatsapp className="h-8 w-8 text-white" />
 </div>
 
@@ -38,23 +38,23 @@ export default function Step1() {
           </h1>
 
           <p className="text-lg text-gray-300 mb-8 max-w-xl">
-            Con cada minuto que pasa, tus peores miedos pueden estar volviéndose realidad.
+            Con cada mensaje que pasa, los puntos ruedos pueden estar escondiéndose en WhatsApp.
           </p>
 
-          <p className="text-lg text-white font-bold mb-8 max-w-xl">Descubre la verdad en menos de 2 minutos.</p>
+          <p className="text-lg text-white font-bold mb-8 max-w-xl">Descubre la verdad en menos de 5 minutos.</p>
 
           <div className="inline-flex items-center bg-green-900/50 text-green-300 border border-green-700 rounded-full px-4 py-1.5 text-sm mb-8">
             <CheckCircle className="h-4 w-4 mr-2 flex-shrink-0" />
-            <span>Sistema de Detección Avanzado - Actualizado Noviembre 2025</span>
+            <span>Sistema de Monitoreo WhatsApp - Actualizado Noviembre 2025</span>
           </div>
 
           <div className="w-full max-w-lg space-y-4 text-left mb-8">
             {/* Item 1 */}
             <div className="bg-white/10 p-4 rounded-lg flex items-start gap-4 border-l-[6px] border-pink-500 shadow-md">
-              <div className="text-3xl mt-1">👤</div>
+              <div className="text-3xl mt-1">📱</div>
               <div className="text-sm text-gray-200 leading-relaxed">
                 <span className="font-bold text-white text-base block mb-1">
-                  ¿Historias y publicaciones que "desaparecieron"?
+                  ¿Mensajes que 'desaparecen' o conversas borradas?
                 </span>
                 Descubre contenido que fue ocultado intencionalmente de ti.
               </div>
@@ -62,21 +62,21 @@ export default function Step1() {
 
             {/* Item 2 */}
             <div className="bg-white/10 p-4 rounded-lg flex items-start gap-4 border-l-[6px] border-pink-500 shadow-md">
-              <div className="text-3xl mt-1">🔥</div>
+              <div className="text-3xl mt-1">📸</div>
               <div className="text-sm text-gray-200 leading-relaxed">
-                <span className="font-bold text-white text-base block mb-1">Likes sospechosos en fotos íntimas</span>
-                de personas que ni siquiera conoces. Monitorea cada interacción comprometedora.
+                <span className="font-bold text-white text-base block mb-1">Fotos y videos compartidos en chats privados</span>
+                Ve qué tipo de contenido está compartiendo. Cada foto cuenta una historia.
               </div>
             </div>
 
             {/* Item 3 */}
             <div className="bg-white/10 p-4 rounded-lg flex items-start gap-4 border-l-[6px] border-pink-500 shadow-md">
-              <div className="text-3xl mt-1">📸</div>
+              <div className="text-3xl mt-1">🔒</div>
               <div className="text-sm text-gray-200 leading-relaxed">
                 <span className="font-bold text-white text-base block mb-1">
-                  Fotos y videos guardados en carpetas ocultas.
+                  Conversaciones archivadas y contactos ocultos
                 </span>
-                Ve lo que realmente se está guardando.
+                Descubre con quién habla realmente cuando tú no estás presente.
               </div>
             </div>
 
@@ -84,8 +84,8 @@ export default function Step1() {
             <div className="bg-white/10 p-4 rounded-lg flex items-start gap-4 border-l-[6px] border-pink-500 shadow-md">
               <div className="text-3xl mt-1">💬</div>
               <div className="text-sm text-gray-200 leading-relaxed">
-                <span className="font-bold text-white text-base block mb-1">Mensajes "eliminados" recuperados.</span>
-                La tecnología no olvida. Descubre las conversaciones que intentaron ocultar.
+                <span className="font-bold text-white text-base block mb-1">Mensajes 'eliminados' recuperables.</span>
+                La tecnología no olvida. Descubre las conversaciones que intentaron borrar.
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function Step1() {
           >
             🔍 DESCUBRE LA VERDAD AHORA
           </button>
-          <p className="text-xs text-gray-400 mt-2">Investigación 100% anónima. Nunca sabrán que verificaste.</p>
+          <p className="text-xs text-gray-400 mt-2">Investigación 100% anónima. Resultados en minutos</p>
         </div>
       </section>
 
@@ -120,25 +120,25 @@ export default function Step1() {
               </div>
               <h4 className="font-bold text-lg mb-2">ACTIVIDAD RECIENTE</h4>
               <p className="text-gray-500 text-sm">
-                Ve con qué perfiles la persona ha interactuado más frecuentemente en los últimos días.
+                Ve con qué contactos chatea más frecuentemente y a qué horas está más activo en WhatsApp.
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="inline-block bg-purple-100 p-4 rounded-xl mb-4">
                 <Users className="h-8 w-8 text-purple-500" />
               </div>
-              <h4 className="font-bold text-lg mb-2">PERFILES VISITADOS</h4>
+              <h4 className="font-bold text-lg mb-2">CONTACTOS FRECUENTES</h4>
               <p className="text-gray-500 text-sm">
-                Descubre los perfiles que están siendo visitados repetidamente y en momentos sospechosos.
+                Descubre quiénes son sus contactos más activos y qué tipo de relación mantienen en WhatsApp.
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="inline-block bg-red-100 p-4 rounded-xl mb-4">
                 <Camera className="h-8 w-8 text-red-500" />
               </div>
-              <h4 className="font-bold text-lg mb-2">FOTOS CON LIKE</h4>
+              <h4 className="font-bold text-lg mb-2">FOTOS Y MULTIMEDIA</h4>
               <p className="text-gray-500 text-sm">
-                Todas las fotos a las que han dado like — incluyendo las que quitaron después.
+                Todas las fotos y videos que han compartido — descubriendo lo que prefieren ocultar.
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
@@ -147,7 +147,7 @@ export default function Step1() {
               </div>
               <h4 className="font-bold text-lg mb-2">CONVERSACIONES PRIVADAS</h4>
               <p className="text-gray-500 text-sm">
-                Ve con quién están hablando constantemente y qué se dice realmente.
+                Ve con quién están hablando constantemente y lee lo que realmente dicen.
               </p>
             </div>
           </div>
@@ -176,9 +176,7 @@ export default function Step1() {
                 </div>
               </div>
               <blockquote className="text-gray-600 italic mb-4">
-                Durante 8 meses sentí que algo estaba mal. Él lo negaba todo. La herramienta mostró conversaciones con
-                su 'mejor amiga' que me hicieron llorar por días, pero me dio la fuerza para seguir adelante y dejar de
-                vivir en una mentira.
+                Llevaba meses con esa sensación rara. Si lo mejillas todo. Lo herramienta mostró conversaciones con su 'mejor amiga' que me hicieron llorar por días, pero me dio la libertad para seguir adelante y dejar de vivir en una mentira.
               </blockquote>
               <StarRating />
             </div>
@@ -193,8 +191,7 @@ export default function Step1() {
                 </div>
               </div>
               <blockquote className="text-gray-600 italic mb-4">
-                Descubrí en noviembre de 2025 que mi prometido intercambiaba mensajes íntimos con 3 mujeres diferentes.
-                Cancelé la boda 2 semanas antes. Dolió mucho, pero me salvó de un error que habría destruido mi vida.
+                Descubrí en menos de 20 MIN que mi prometido intercambiaba mensajes íntimos con 3 mujeres diferentes en WhatsApp. Conversé lo hecho 7 semanas antes. Dolió mucho, pero me salvó de un error que habría arruinado mi vida.
               </blockquote>
               <StarRating />
             </div>
@@ -212,9 +209,7 @@ export default function Step1() {
                 </div>
               </div>
               <blockquote className="text-gray-600 italic mb-4">
-                Mi esposo juraba que yo estaba loca, que solo eran amigas del trabajo. Los perfiles privados estaban
-                todos ahí — fotos provocativas a las que daba like a las 2 AM. Ahora estoy siguiendo adelante sin
-                ninguna duda.
+                Mi esposo juraba que yo estaba loca, que sólo eran amigas del trabajo. Los perfiles privados estaban llenos de... fotos provocativas y las que había visto a las 2 AM. Ahora estoy siguiendo adelante sin ninguna duda.
               </blockquote>
               <StarRating />
             </div>
