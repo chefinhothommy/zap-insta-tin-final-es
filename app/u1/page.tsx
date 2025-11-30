@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Input } from "@/components/ui/input"
+import Script from "next/script" // Importación necesaria para Next.js
 import { User, CheckCircle, Heart, MessageCircle, Lock, AlertTriangle, Instagram, LockOpen } from "lucide-react"
 
 // ==========================================================
@@ -186,6 +187,7 @@ export default function Step2() {
     }
   }, [step, selectedGender])
 
+  // Temporizador
   useEffect(() => {
     if (step === 3 && timeLeft > 0) {
       const timer = setInterval(() => {
@@ -194,6 +196,29 @@ export default function Step2() {
       return () => clearInterval(timer)
     }
   }, [step, timeLeft])
+
+  // Lógica para inicializar el Widget de Hotmart cuando se llega al paso 3
+  useEffect(() => {
+    if (step === 3) {
+      const initHotmartWidget = () => {
+        // Verificar si el script de Hotmart ya cargó
+        if (typeof (window as any).checkoutElements !== "undefined") {
+          try {
+            (window as any).checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+            console.log("Hotmart Widget Mounted")
+          } catch (e) {
+            console.error("Error mounting Hotmart widget:", e)
+          }
+        } else {
+          // Si no ha cargado, intentar de nuevo en 500ms
+          setTimeout(initHotmartWidget, 500)
+        }
+      }
+      
+      // Pequeño delay para asegurar que el div exista en el DOM
+      setTimeout(initHotmartWidget, 200)
+    }
+  }, [step])
 
   const formatTime = (seconds: number) => {
     if (seconds <= 0) return "00:00"
@@ -637,51 +662,8 @@ export default function Step2() {
           </p>
         </div>
 
-        {/* --- MAIN BUTTON AND PRICE --- */}
-        <a
-          href="https://pay.hotmart.com/T101928947F?checkoutMode=10"
-          className="mt-6 block w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg py-4 rounded-lg transition-colors shadow-lg hover:shadow-xl"
-        >
-          🔓 SÍ, QUIERO EL REPORTE COMPLETO
-        </a>
-        <div className="mt-4 text-center">
-          <p className="text-gray-500">
-            De <span className="line-through">$79</span> por solo
-          </p>
-          <p className="text-4xl font-bold text-green-600">$37</p>
-          <p className="text-xs text-gray-400 mt-1">(Pago Único)</p>
-        </div>
-
-        {/* --- TRUST & GUARANTEE AREA (All Translated) --- */}
-        <div className="mt-8 border-t pt-6">
-          {/* 1. Social Proof */}
-          <div className="flex items-center justify-center gap-2 text-yellow-500">
-            <span>★★★★★</span>
-            <span className="text-gray-600 font-medium text-sm">4.9/5.0</span>
-          </div>
-          <p className="text-sm text-gray-500 mt-1">Basado en 15,783 clientes satisfechos.</p>
-
-          {/* 2. Guarantee */}
-          <div className="mt-6 flex items-center justify-center gap-3 bg-gray-50 p-3 rounded-lg">
-            <img src="/images/design-mode/guarantee.png" alt="Guarantee Seal" className="h-12 w-12 opacity-70" />
-            <div>
-              <h4 className="font-bold text-gray-800 text-left">Garantía de 7 Días</h4>
-              <p className="text-xs text-gray-600 text-left">
-                Tu satisfacción o te devolvemos tu dinero. Cero riesgo para ti.
-              </p>
-            </div>
-          </div>
-
-          {/* 3. Security Seals */}
-          <div className="mt-4">
-            <p className="text-xs text-gray-400 mb-2">Pago 100% Seguro</p>
-            <img
-              src="/images/secure-payment-badge2.png"
-              alt="Secure Payment Badges"
-              className="mx-auto h-6 opacity-80"
-            />
-          </div>
-        </div>
+        {/* --- HOTMART WIDGET REPLACEMENT --- */}
+        <div id="hotmart-sales-funnel" className="w-full mt-6"></div>
       </div>
     </div>
   )
@@ -689,6 +671,9 @@ export default function Step2() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-[rgba(156,79,165,1)]">
       
+      {/* SCRIPT HOTMART */}
+      <Script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js" strategy="afterInteractive" />
+
       {/* === HEADER ROJO === */}
       <div className="w-full bg-[#dc2626] text-white text-center py-3 px-4 font-bold text-sm md:text-base shadow-sm z-20">
         Atención: no cierres esta página, <span className="text-yellow-300">Tu pago aún se está procesando.</span>
