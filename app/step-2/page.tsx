@@ -137,6 +137,8 @@ interface ProgressStep {
 
 const countries = [
   // --- PAÍSES DE HABLA HISPANA (Prioridad) ---
+  { code: "+52", name: "México", flag: "🇲🇽", placeholder: "55 1234 5678" },
+  { code: "+34", name: "España", flag: "🇪🇸", placeholder: "612 34 56 78" },
   { code: "+54", name: "Argentina", flag: "🇦🇷", placeholder: "11 1234-5678" },
   { code: "+591", name: "Bolivia", flag: "🇧🇴", placeholder: "71234567" },
   { code: "+56", name: "Chile", flag: "🇨🇱", placeholder: "9 1234 5678" },
@@ -144,11 +146,9 @@ const countries = [
   { code: "+506", name: "Costa Rica", flag: "🇨🇷", placeholder: "8312 3456" },
   { code: "+593", name: "Ecuador", flag: "🇪🇨", placeholder: "99 123 4567" },
   { code: "+503", name: "El Salvador", flag: "🇸🇻", placeholder: "7012 3456" },
-  { code: "+34", name: "España", flag: "🇪🇸", placeholder: "612 34 56 78" },
   { code: "+502", name: "Guatemala", flag: "🇬🇹", placeholder: "5512 3456" },
   { code: "+240", name: "Guinea Ecuatorial", flag: "🇬🇶", placeholder: "222 123 456" },
   { code: "+504", name: "Honduras", flag: "🇭🇳", placeholder: "9123 4567" },
-  { code: "+52", name: "México", flag: "🇲🇽", placeholder: "55 1234 5678" },
   { code: "+505", name: "Nicaragua", flag: "🇳🇮", placeholder: "8712 3456" },
   { code: "+507", name: "Panamá", flag: "🇵🇦", placeholder: "6712 3456" },
   { code: "+595", name: "Paraguay", flag: "🇵🇾", placeholder: "961 123456" },
