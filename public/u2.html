@@ -1,134 +1,501 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offer - CheatFinder V2</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Resultados de la Investigación</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 1. SCRIPT MONETIZZE ONE CLICK (HEAD) -->
+    <script type="text/javascript" src="https://app.monetizze.com.br/upsell_incorporado.php"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-color: #8A2BE2;
-            --secondary-color: #9370DB;
-            --dark-text: #2c2c2c;
-            --light-text: #555;
-            --background-color: #fdfaff;
-            --white-color: #ffffff;
-            --border-color: #ebebeb;
-            --success-color: #28a745;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            background-color: var(--background-color);
-            color: var(--dark-text);
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .main-content {
-            background-color: var(--white-color);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-        }
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-weight: 900;
-            font-size: 2.5rem;
-            color: var(--dark-text);
-            margin-bottom: 15px;
-        }
-        p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-            margin-bottom: 25px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-section {
-            margin-top: 30px;
-        }
-        h2 {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--dark-text);
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--dark-text);
-        }
-        input[type="text"] {
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        /* Efecto borroso para fotos censuradas */
+        .censored-blur { filter: blur(8px); }
+
+        /* --- AJUSTE DE ALTURA DEL IFRAME MONETIZZE --- */
+        .iframeUpsell {
             width: 100%;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        /* Style for Hotmart container to have some top margin */
-        #hotmart-sales-funnel {
-            margin-top: 20px;
+            border: none;
+            /* Altura ajustada para que quepa el botón y el texto legal sin cortar */
+            min-height: 500px; 
+            display: block;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="main-content">
-            <div class="icon">🎉</div>
-            <h1>Your purchase is almost finalized.</h1>
-            <p><strong>Congratulations!</strong> As a user of CheatFinder App, we are pleased to present our latest extension, <strong>CheatFinder V2!</strong></p>
-            <p>This new version offers advanced features to further expand your spying capabilities. In addition to monitoring WhatsApp, you can now access your partner's social networks such as Facebook, and Instagram directly from CheatFinder V2.</p>
-            <p>This exclusive offer is reserved for our loyal customers and is limited. To take full advantage of these new features, we suggest you upgrade to version V2 now!</p>
-            
-            <div class="form-section">
-                <h2>ENTER YOUR PARTNER'S SOCIAL MEDIA FOR MONITORING</h2>
-                <div class="input-group">
-                    <label for="facebook-user">Facebook username (optional)</label>
-                    <input type="text" id="facebook-user" name="facebook-user" placeholder="e.g., john.doe.123">
-                </div>
-                <div class="input-group">
-                    <label for="instagram-user">Instagram username (optional)</label>
-                    <input type="text" id="instagram-user" name="instagram-user" placeholder="e.g., @johndoe">
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Banner Superior -->
+    <div class="fixed top-0 w-full z-50 bg-red-600 text-white p-2 text-center text-sm font-semibold shadow-md">
+        <span class="font-bold text-yellow-400">Atención:</span> no cierre esta página, su pago aún se está procesando.
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 pt-16">
+        <main class="w-full max-w-md mx-auto">
+
+            <!-- ESTADO: SECCIÓN DE INPUT -->
+            <div id="section-input" class="space-y-6 animate-fade-in">
+                <p class="text-lg text-center text-gray-800 pt-5">
+                    <span class="font-bold text-red-600">¡ATENCIÓN!</span> Nuestro sistema ha identificado que este usuario está registrado en aplicaciones de citas. Use nuestro escáner de imagen para verificar.
+                </p>
+                
+                <!-- Caja de Subida -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Sube su foto para reconocimiento facial</h2>
+                    <label for="photo-upload" class="w-40 h-40 mx-auto flex items-center justify-center border-2 border-dashed border-blue-400 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors relative overflow-hidden">
+                        <input id="photo-upload" type="file" accept="image/*" class="hidden" onchange="handleImageChange(this)">
+                        <img id="image-preview" src="" class="w-full h-full object-cover absolute hidden">
+                        <div id="upload-placeholder">
+                            <i data-lucide="camera" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                        </div>
+                    </label>
+                    <p class="text-sm text-gray-500 mt-4">Escanearemos todas las plataformas de citas para encontrar perfiles coincidentes, incluso aquellos que creen que están ocultos.</p>
                 </div>
                 
-                <!-- HOTMART - Sales Funnel Widget -->
-                <!--- sales funnel container --->
-                <div id="hotmart-sales-funnel"></div>
+                <!-- Selector de Género -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">¿Cuál es su género?</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <button onclick="selectGender('Male')" id="btn-male" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">👨🏻</span>
+                            <span class="font-semibold text-gray-700">Hombre</span>
+                        </button>
+                        <button onclick="selectGender('Female')" id="btn-female" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">👩🏻</span>
+                            <span class="font-semibold text-gray-700">Mujer</span>
+                        </button>
+                        <button onclick="selectGender('Non-binary')" id="btn-non-binary" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">🧑🏻</span>
+                            <span class="font-semibold text-gray-700">No binario</span>
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">
+                        Esto nos ayuda a rastrear la actividad de su dispositivo y cruzar datos con patrones de uso de apps de citas.
+                    </p>
+                </div>
+
+                <button id="start-btn" onclick="startInvestigation()" disabled class="w-full text-white font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed bg-red-600 hover:bg-red-700">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    <span>INICIAR INVESTIGACIÓN - ENCONTRAR LA VERDAD</span>
+                </button>
+            </div>
+
+            <!-- ESTADO: SECCIÓN DE CARGA -->
+            <div id="section-loading" class="text-center animate-fade-in space-y-4 py-10 hidden">
+                <i data-lucide="loader-2" class="w-16 h-16 text-blue-600 mx-auto animate-spin"></i>
+                <h2 class="text-2xl font-bold text-gray-800">Buscando...</h2>
+                <p class="text-gray-600">Cruzando imagen con millones de perfiles.<br/>Esto puede tomar un momento.</p>
+            </div>
+
+            <!-- ESTADO: SECCIÓN DE RESULTADOS -->
+            <div id="section-results" class="space-y-4 animate-fade-in hidden">
+                
+                <!-- Banners de Alerta -->
+                <div class="bg-red-600 text-white p-3 rounded-lg shadow-lg flex items-center gap-3">
+                    <i data-lucide="zap" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h1 class="font-bold text-base">PERFIL ENCONTRADO - ESTÁN ACTIVOS EN TINDER</h1>
+                        <p class="text-xs text-red-200">Visto por última vez: <span class="font-semibold">En línea ahora</span></p>
+                    </div>
+                </div>
+                
+                <div class="bg-orange-500 text-white p-3 rounded-lg shadow-lg flex items-center gap-3">
+                    <i data-lucide="alert-triangle" class="w-6 h-6 shrink-0"></i>
+                    <p class="text-sm font-semibold">
+                        <span class="font-bold">ATENCIÓN: ¡PERFIL ACTIVO ENCONTRADO!</span> Confirmamos que este número está vinculado a un perfil ACTIVO de Tinder. Últimos registros de uso detectados en <span id="user-city">tu ciudad</span>.
+                    </p>
+                </div>
+
+                <!-- Cuadrícula de Estadísticas -->
+                <div class="grid grid-cols-4 gap-3 text-center">
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-red-600">6</p>
+                        <p class="text-xs text-gray-500 font-semibold">MATCHES (7 DÍAS)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-orange-500">30</p>
+                        <p class="text-xs text-gray-500 font-semibold">ME GUSTA (7 DÍAS)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-purple-600">4</p>
+                        <p class="text-xs text-gray-500 font-semibold">CHATS ACTIVOS</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-gray-800">18h</p>
+                        <p class="text-xs text-gray-500 font-semibold">ÚLTIMA VEZ ACTIVO</p>
+                    </div>
+                </div>
+
+                <!-- Lista de Matches -->
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 text-white p-5 rounded-lg shadow-2xl">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="flame" class="text-orange-400 w-5 h-5"></i>
+                        <h2 class="text-lg font-bold">MATCHES RECIENTES ENCONTRADOS</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-5">Toca un match para ver más información</p>
+                    <div id="matches-list" class="space-y-4">
+                        <!-- Matches inyectados vía JS -->
+                    </div>
+                </div>
+
+                <!-- Carrusel de Fotos Censuradas -->
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 text-white p-5 rounded-lg shadow-2xl relative">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="camera" class="text-slate-300 w-5 h-5"></i>
+                        <h2 class="text-lg font-bold">FOTOS CENSURADAS</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">Ver todas las fotos de perfil (incluidas las que nunca has visto)</p>
+                    
+                    <!-- Contenedor del Carrusel -->
+                    <div class="relative group">
+                        <div id="carousel-track" class="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-0 rounded-lg">
+                            <!-- Imágenes inyectadas vía JS -->
+                        </div>
+                        
+                        <!-- Controles -->
+                        <button onclick="scrollCarousel(-1)" class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="scrollCarousel(1)" class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="carousel-dots" class="flex justify-center items-center mt-4 gap-2">
+                        <!-- Puntos inyectados vía JS -->
+                    </div>
+                </div>
+
+                <!-- Desbloquear / Widget de Monetizze -->
+                <div class="bg-white p-5 rounded-lg shadow-xl text-center">
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-cyan-500 flex items-center justify-center mb-4">
+                        <i data-lucide="lock" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800"><span class="text-yellow-600">🔓</span> DESBLOQUEAR INFORME COMPLETO</h2>
+                    <p class="text-gray-600 mt-1">Obtén acceso instantáneo al informe completo con todos los matches y fotos intercambiadas</p>
+                    
+                    <div class="bg-red-100 border-2 border-red-500 text-red-800 p-4 rounded-lg mt-5 mb-5">
+                        <div class="flex items-center justify-center gap-2">
+                            <i data-lucide="alert-triangle" class="text-red-600 w-5 h-5"></i>
+                            <h3 class="font-bold">EL INFORME SE ELIMINARÁ EN:</h3>
+                        </div>
+                        <p id="countdown" class="text-4xl font-mono font-bold my-1">05:00</p>
+                        <p class="text-xs text-red-700">Cuando expire el tiempo, este informe se eliminará permanentemente por razones de privacidad. Esta oferta no se podrá recuperar más tarde.</p>
+                    </div>
+
+                    <!-- 2. IFRAME MONETIZZE ONE CLICK (BODY) -->
+                    <div id="monetizze-widget-area" class="w-full pt-4 flex justify-center">
+                        <iframe class="iframeUpsell" data-chave="77765b20e9fbd730451d1fcfc8e6f9e9"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL DE DETALLE DEL MATCH -->
+    <div id="match-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in hidden" onclick="closeModal()">
+        <div class="bg-white rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 z-10">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img id="modal-avatar" src="" alt="Match" class="w-full h-80 object-cover rounded-t-2xl">
+            <div class="p-5">
+                <div class="flex items-center gap-2">
+                    <h1 id="modal-name" class="text-3xl font-bold text-gray-800">Nombre</h1>
+                    <i id="modal-verified" data-lucide="check-circle" class="text-blue-500 w-7 h-7 hidden" fill="white"></i>
+                </div>
+                <div class="flex flex-col gap-1 text-gray-600 mt-2 text-sm">
+                    <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4"></i><p id="modal-identity"></p></div>
+                    <div class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4"></i><p id="modal-location"></p></div>
+                    <div class="flex items-center gap-1.5"><p id="modal-distance"></p></div>
+                </div>
+                <div class="mt-6">
+                    <h2 class="font-bold text-gray-800">Sobre mí</h2>
+                    <p id="modal-bio" class="text-gray-600 mt-1"></p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 text-sm" id="modal-tags">
+                    <!-- Etiquetas -->
+                </div>
+                <div class="mt-6">
+                    <h2 class="font-bold text-gray-800">Mis Intereses</h2>
+                    <div class="flex flex-wrap gap-2 mt-2 text-sm" id="modal-interests">
+                        <!-- Intereses -->
+                    </div>
+                </div>
+            </div>
+            <div class="sticky bottom-0 grid grid-cols-2 gap-4 bg-white p-4 border-t border-gray-200">
+                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 font-bold py-3 rounded-full hover:bg-gray-300 transition-colors">Rechazar</button>
+                <button class="bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold py-3 rounded-full hover:opacity-90 transition-opacity">Me gusta</button>
             </div>
         </div>
     </div>
 
-    <!--- script load and setup --->
-    <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+    <!-- LÓGICA JAVASCRIPT -->
     <script>
-    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+        // --- DATOS ---
+        const defaultMatchesData = [
+            { name: "Mila", age: 26, lastSeen: "hace 6h", avatar: "/images/male/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Mitad soñadora, mitad realista. Todo es cuestión de buena vibra. ¿Lista para crear recuerdos?", zodiac: "Virgo", mbti: "ENFJ", passion: "Café", interests: ["Senderismo", "Vida Eco", "Música en Vivo", "Cerámica"] },
+            { name: "Juan", age: 25, lastSeen: "hace 4h", avatar: "/images/female/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Mitad adicto a la adrenalina, mitad amante de estar en casa. ¿Cuál es tu vibra?", zodiac: "Leo", mbti: "ESTP", passion: "Fitness", interests: ["Meditación", "Libros", "Vino", "Música"] },
+            { name: "Sofía", age: 21, lastSeen: "hace 3h", avatar: "/images/male/tinder/3.jpg", verified: false, identity: "Mujer", distance: "5 km", bio: "Solo una chica que ama los atardeceres y caminar por la playa. Busco alguien con quien compartir aventuras.", zodiac: "Leo", mbti: "ISFP", passion: "Yoga", interests: ["Viajes", "Fotografía", "Podcasts"] },
+            { name: "Mateo", age: 23, lastSeen: "hace 2h", avatar: "/images/female/tinder/3.jpg", verified: true, identity: "Hombre", distance: "8 km", bio: "Hablo fluido en sarcasmo y citas de películas. Busquemos la mejor pizza de la ciudad.", zodiac: "Géminis", mbti: "ENTP", passion: "Cocina", interests: ["Conciertos", "Netflix", "Perros"] }
+        ];
+
+        const femaleMatchesData = [
+            { name: "Valentina", age: 24, lastSeen: "hace 1h", avatar: "/images/male/tinder/1.jpg", verified: true, identity: "Mujer", distance: "3 km", bio: "Buscando nuevas aventuras y una buena taza de café. Exploremos la ciudad juntos.", zodiac: "Aries", mbti: "ENFP", passion: "Viajar", interests: ["Arte", "Historia", "Podcasts"] },
+            { name: "Isabella", age: 27, lastSeen: "hace 5h", avatar: "/images/male/tinder/2.jpg", verified: false, identity: "Mujer", distance: "1 km", bio: "Ratón de biblioteca y chef aspirante. Cuéntame sobre el último buen libro que leíste.", zodiac: "Tauro", mbti: "ISFJ", passion: "Cocinar", interests: ["Lectura", "Yoga", "Documentales"] },
+            { name: "Camila", age: 22, lastSeen: "En línea", avatar: "/images/male/tinder/3.jpg", verified: true, identity: "Mujer", distance: "6 km", bio: "Amante de la música en vivo y los viajes espontáneos. ¿Cuál es nuestro primer destino?", zodiac: "Sagitario", mbti: "ESFP", passion: "Música", interests: ["Conciertos", "Fotografía", "Senderismo"] },
+            { name: "Lucía", age: 25, lastSeen: "hace 3h", avatar: "/images/male/tinder/4.jpg", verified: true, identity: "Mujer", distance: "4 km", bio: "Entusiasta del fitness que es igual de feliz en el sofá viendo una buena peli.", zodiac: "Virgo", mbti: "ISTJ", passion: "Fitness", interests: ["Cine", "Comida Sana", "Perros"] },
+            { name: "Mariana", age: 28, lastSeen: "hace 8h", avatar: "/images/male/tinder/5.jpg", verified: false, identity: "Mujer", distance: "7 km", bio: "Alma creativa con amor por la pintura y la poesía. Busco conversaciones profundas.", zodiac: "Piscis", mbti: "INFP", passion: "Arte", interests: ["Museos", "Escribir", "Cafeterías"] },
+            { name: "Gabriela", age: 23, lastSeen: "hace 2h", avatar: "/images/male/tinder/6.jpg", verified: true, identity: "Mujer", distance: "2 km", bio: "El sarcasmo es mi segundo idioma. Encontremos los mejores tacos de la zona.", zodiac: "Géminis", mbti: "ENTP", passion: "Comedia", interests: ["Foodie", "Viajes", "Stand-up"] }
+        ];
+
+        const maleMatchesData = [
+            { name: "Sebastián", age: 26, lastSeen: "En línea", avatar: "/images/female/tinder/1.jpg", verified: true, identity: "Hombre", distance: "2 km", bio: "Ingeniero de día, músico de noche. Hablemos de tecnología y buenas canciones.", zodiac: "Capricornio", mbti: "INTJ", passion: "Guitarra", interests: ["Tecnología", "Música en Vivo", "Cerveza Artesanal"] },
+            { name: "Diego", age: 29, lastSeen: "hace 4h", avatar: "/images/female/tinder/2.jpg", verified: true, identity: "Hombre", distance: "5 km", bio: "Entusiasta del aire libre buscando alguien para hacer senderismo. A mi perro seguro le caerás bien.", zodiac: "Leo", mbti: "ESTP", passion: "Senderismo", interests: ["Camping", "Perros", "Fogatas"] },
+            { name: "Alejandro", age: 25, lastSeen: "hace 1h", avatar: "/images/female/tinder/3.jpg", verified: false, identity: "Hombre", distance: "3 km", bio: "Cinéfilo y nerd de la historia. Puedo recomendarte una película para cualquier estado de ánimo.", zodiac: "Cáncer", mbti: "INFJ", passion: "Cine", interests: ["Historia", "Lectura", "Ajedrez"] },
+            { name: "Nicolás", age: 27, lastSeen: "hace 6h", avatar: "/images/female/tinder/4.jpg", verified: true, identity: "Hombre", distance: "8 km", bio: "Solo un chico que disfruta de la buena comida, buena compañía y explorar lugares nuevos.", zodiac: "Libra", mbti: "ESFJ", passion: "Foodie", interests: ["Viajes", "Cocina", "Deportes"] },
+            { name: "Javier", age: 30, lastSeen: "hace 2h", avatar: "/images/female/tinder/5.jpg", verified: true, identity: "Hombre", distance: "4 km", bio: "Tratando de encontrar a alguien que no me robe las papas fritas. Broma... o no.", zodiac: "Escorpio", mbti: "ISTP", passion: "Viajar", interests: ["Fotografía", "Motos", "Gimnasio"] },
+            { name: "Eduardo", age: 24, lastSeen: "hace 7h", avatar: "/images/female/tinder/6.jpg", verified: false, identity: "Hombre", distance: "6 km", bio: "Fluido en sarcasmo y chistes malos. Buscando una cómplice.", zodiac: "Acuario", mbti: "ENTP", passion: "Gaming", interests: ["Comedia", "Sci-Fi", "Conciertos"] }
+        ];
+
+        const defaultCensoredPhotos = ["/images/censored/photo1.jpg", "/images/censored/photo2.jpg", "/images/censored/photo3.jpg", "/images/censored/photo4.jpg"];
+        const femaleCensoredPhotos = ["/images/male/tinder/censored/censored-f-1.jpg", "/images/male/tinder/censored/censored-f-2.jpg", "/images/male/tinder/censored/censored-f-3.jpg", "/images/male/tinder/censored/censored-f-4.jpg"];
+        const maleCensoredPhotos = ["/images/female/tinder/censored/censored-h-1.jpg", "/images/female/tinder/censored/censored-h-2.jpg", "/images/female/tinder/censored/censored-h-3.jpg", "/images/female/tinder/censored/censored-h-4.jpg"];
+
+        // --- ESTADO ---
+        let state = {
+            gender: null,
+            imageUploaded: false,
+            location: 'tu ciudad'
+        };
+
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Intenta pre-cargar la ubicación inmediatamente
+            fetch('/api/location')
+                .then(res => res.json())
+                .then(data => { if(data.city) state.location = data.city; })
+                .catch(err => console.log('Error al obtener ubicación (usando por defecto)', err));
+        });
+
+        // --- FUNCIONES DE INPUT ---
+        function handleImageChange(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('image-preview');
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    document.getElementById('upload-placeholder').classList.add('hidden');
+                    state.imageUploaded = true;
+                    checkStartButton();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function selectGender(gender) {
+            state.gender = gender;
+            
+            // Actualización Visual
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.className = "gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400";
+            });
+            const activeBtn = document.getElementById(`btn-${gender.toLowerCase().replace(' ', '-')}`);
+            activeBtn.className = "gender-btn p-4 border border-blue-500 bg-blue-100 ring-2 ring-blue-300 rounded-xl transition-all duration-200";
+            
+            checkStartButton();
+        }
+
+        function checkStartButton() {
+            const btn = document.getElementById('start-btn');
+            if (state.imageUploaded && state.gender) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function startInvestigation() {
+            document.getElementById('section-input').classList.add('hidden');
+            document.getElementById('section-loading').classList.remove('hidden');
+            
+            // Espera 3 segundos y muestra resultados
+            setTimeout(() => {
+                showResults();
+            }, 3000);
+        }
+
+        // --- FUNCIONES DE RESULTADOS ---
+        function showResults() {
+            document.getElementById('section-loading').classList.add('hidden');
+            document.getElementById('section-results').classList.remove('hidden');
+            
+            document.getElementById('user-city').innerText = state.location;
+            
+            renderMatches();
+            renderCarousel();
+            startTimer();
+        }
+
+        function getActiveData() {
+            let matches = defaultMatchesData;
+            let photos = defaultCensoredPhotos;
+            
+            if (state.gender === 'Male') {
+                matches = femaleMatchesData; // Buscando mujeres
+                photos = femaleCensoredPhotos;
+            } else if (state.gender === 'Female') {
+                matches = maleMatchesData; // Buscando hombres
+                photos = maleCensoredPhotos;
+            }
+            return { matches, photos };
+        }
+
+        function renderMatches() {
+            const { matches } = getActiveData();
+            const container = document.getElementById('matches-list');
+            
+            container.innerHTML = matches.map((match, index) => `
+                <div onclick="openModal(${index})" class="flex items-center gap-4 bg-slate-700/50 p-3 rounded-lg cursor-pointer hover:bg-slate-600 transition-colors">
+                    <img src="${match.avatar}" onerror="this.src='/placeholder.svg'" alt="${match.name}" class="w-12 h-12 rounded-full object-cover border-2 border-slate-600">
+                    <div class="flex-grow">
+                        <p class="font-bold">${match.name}, ${match.age}</p>
+                        <p class="text-xs text-gray-400">Visto por última vez: ${match.lastSeen}</p>
+                        <p class="text-xs font-semibold text-green-400">Chat activo: frecuentemente en línea</p>
+                    </div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+            `).join('');
+        }
+
+        // --- LÓGICA DEL CARRUSEL ---
+        function renderCarousel() {
+            const { photos } = getActiveData();
+            const track = document.getElementById('carousel-track');
+            const dots = document.getElementById('carousel-dots');
+            
+            track.innerHTML = photos.map(src => `
+                <div class="relative flex-[0_0_100%] aspect-video bg-gray-700 rounded-lg overflow-hidden snap-center">
+                    <img src="${src}" onerror="this.src='/placeholder.svg'" class="w-full h-full object-cover censored-blur">
+                    <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white">
+                        <i data-lucide="lock" class="w-8 h-8"></i>
+                        <span class="font-bold mt-1 text-sm tracking-widest">BLOQUEADO</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            dots.innerHTML = photos.map((_, i) => `
+                <div class="w-2 h-2 rounded-full bg-slate-600 transition-colors" id="dot-${i}"></div>
+            `).join('');
+            
+            updateDots(0);
+            
+            // Re-iniciar iconos para elementos nuevos
+            lucide.createIcons();
+            
+            // Lógica de auto scroll
+            track.addEventListener('scroll', () => {
+                const index = Math.round(track.scrollLeft / track.offsetWidth);
+                updateDots(index);
+            });
+            
+            setInterval(() => scrollCarousel(1), 6000);
+        }
+
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            const width = track.offsetWidth;
+            const maxScroll = track.scrollWidth - width;
+            
+            let newScroll = track.scrollLeft + (direction * width);
+            
+            // Funcionalidad de bucle
+            if (newScroll > maxScroll + 10) newScroll = 0;
+            if (newScroll < 0) newScroll = maxScroll;
+            
+            track.scrollTo({ left: newScroll, behavior: 'smooth' });
+        }
+
+        function updateDots(activeIdx) {
+            const dots = document.getElementById('carousel-dots').children;
+            for(let i=0; i<dots.length; i++) {
+                dots[i].className = i === activeIdx 
+                    ? "w-2 h-2 rounded-full bg-white transition-colors" 
+                    : "w-2 h-2 rounded-full bg-slate-600 transition-colors";
+            }
+        }
+
+        // --- LÓGICA DEL MODAL ---
+        let currentMatches = []; 
+
+        function openModal(index) {
+            const { matches } = getActiveData();
+            currentMatches = matches;
+            const match = matches[index];
+            const modal = document.getElementById('match-modal');
+            
+            document.getElementById('modal-avatar').src = match.avatar;
+            document.getElementById('modal-name').innerText = match.name;
+            document.getElementById('modal-verified').classList.toggle('hidden', !match.verified);
+            
+            document.getElementById('modal-identity').innerText = match.identity;
+            document.getElementById('modal-location').innerText = `Vive en ${state.location}`;
+            document.getElementById('modal-distance').innerHTML = `📍 A ${match.distance} de distancia`;
+            document.getElementById('modal-bio').innerText = match.bio;
+            
+            // Etiquetas
+            const tags = [match.zodiac, match.mbti, match.passion];
+            document.getElementById('modal-tags').innerHTML = tags.map(t => 
+                `<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${t}</span>`
+            ).join('');
+            
+            // Intereses
+            document.getElementById('modal-interests').innerHTML = match.interests.map(i => 
+                `<span class="border border-gray-300 text-gray-700 px-3 py-1 rounded-full">${i}</span>`
+            ).join('');
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('match-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // --- TEMPORIZADOR ---
+        function startTimer() {
+            let timeLeft = 300; // 5 min
+            const el = document.getElementById('countdown');
+            setInterval(() => {
+                if (timeLeft <= 0) return;
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const s = (timeLeft % 60).toString().padStart(2, '0');
+                el.innerText = `${m}:${s}`;
+            }, 1000);
+        }
+
     </script>
-    <!-- HOTMART - Sales Funnel Widget -->
 </body>
 </html>
