@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Instagram</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 1. SCRIPT MONETIZZE ONE CLICK (HEAD) -->
+    <script type="text/javascript" src="https://app.monetizze.com.br/upsell_incorporado.php"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Animações */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .animate-pulse-ring { animation: pulse-ring 2s infinite; }
+
+        /* Ajuste para o iframe da Monetizze */
+        .iframeUpsell {
+            width: 100%;
+            border: none;
+            min-height: 500px; 
+            display: block;
+        }
+
+        /* Estilo do Card de Perfil (Fundo escuro com padrão) */
+        .profile-card-bg {
+            background-color: rgba(26, 44, 36, 0.9);
+            background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+    </style>
+</head>
+<body class="bg-[rgba(156,79,165,1)] min-h-screen flex flex-col items-center">
+
+    <!-- Header Rojo -->
+    <div class="w-full bg-[#dc2626] text-white text-center py-3 px-4 font-bold text-sm md:text-base shadow-sm z-20 sticky top-0">
+        Atención: no cierres esta página, <span class="text-yellow-300">Tu pago aún se está procesando.</span>
+    </div>
+
+    <!-- Sección de Aviso (Gris) -->
+    <div class="w-full bg-gray-100 text-center py-10 px-6 border-b-4 border-gray-200 z-10">
+        <p class="text-gray-800 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
+            <span class="text-[#dc2626] font-bold uppercase">¡ATENCIÓN!</span> Nuestro sistema ha identificado que muchos contactos nuevos de WhatsApp provienen de conversaciones de Instagram.
+        </p>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="w-full flex flex-col items-center p-4">
+        
+        <!-- Page Header -->
+        <header class="w-full max-w-md mx-auto text-center px-4 pt-8 pb-8">
+            <div class="inline-block bg-white p-4 rounded-2xl shadow-lg mb-6">
+                <i data-lucide="instagram" class="h-10 w-10 text-pink-600"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">
+                <span role="img" aria-label="magnifying glass">🔍</span> Ayúdanos a Encontrar lo que Ocultan
+            </h1>
+            <p class="text-white">Cuantos más detalles proporciones, más profundo podremos investigar. Todo es 100% anónimo.</p>
+        </header>
+
+        <main class="w-full max-w-md bg-white p-6 md:p-8 rounded-2xl shadow-xl min-h-[500px]">
+            
+            <!-- STEP 1: INPUT -->
+            <div id="step-1" class="text-center space-y-8">
+                <div class="w-full text-left space-y-3">
+                    <h3 class="text-lg font-semibold text-gray-800">¿De quién es este número? (género)</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="selectGender('male')" id="btn-male" class="gender-btn p-3 rounded-xl border-2 flex flex-col items-center justify-center space-y-2 transition-all duration-200 border-gray-200 bg-white hover:border-gray-300">
+                            <span class="text-3xl">👱‍♂️</span>
+                            <span class="font-medium text-sm text-gray-700">Hombre</span>
+                        </button>
+                        <button onclick="selectGender('female')" id="btn-female" class="gender-btn p-3 rounded-xl border-2 flex flex-col items-center justify-center space-y-2 transition-all duration-200 border-gray-200 bg-white hover:border-gray-300">
+                            <span class="text-3xl">👱‍♀️</span>
+                            <span class="font-medium text-sm text-gray-700">Mujer</span>
+                        </button>
+                        <button onclick="selectGender('non-binary')" id="btn-non-binary" class="gender-btn p-3 rounded-xl border-2 flex flex-col items-center justify-center space-y-2 transition-all duration-200 border-gray-200 bg-white hover:border-gray-300">
+                            <span class="text-3xl">👱</span>
+                            <span class="font-medium text-sm text-gray-700">No binario</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-3 mt-6">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-pink-500">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5" />
+                        <circle cx="12" cy="12" r="2" fill="currentColor" />
+                    </svg>
+                    <h1 class="text-2xl font-bold text-black tracking-wide">IDENTIFICACIÓN DEL OBJETIVO</h1>
+                </div>
+                <p class="text-gray-600 !-mt-2">Introduce el usuario de @Instagram abajo y realiza una búsqueda rápida.</p>
+                
+                <div class="relative w-full">
+                    <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                    <input type="text" id="instagram-handle" placeholder="usuario" autocomplete="off" oninput="handleInput(this)" class="w-full bg-white border-2 border-black/20 text-black pl-12 h-14 text-base rounded-lg focus:border-pink-500 focus:ring-pink-500/50 shadow-inner outline-none">
+                </div>
+
+                <!-- Area de Resultado del Perfil -->
+                <div id="profile-result-area" class="w-full min-h-[140px] bg-gray-100 rounded-lg flex items-center justify-center">
+                    <!-- Loading State -->
+                    <div id="profile-loading" class="hidden p-4 w-full">
+                        <div class="bg-pink-50 rounded-lg border-2 border-pink-400 p-4 animate-pulse">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-pink-200"></div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="h-4 bg-pink-200 rounded w-3/4"></div>
+                                    <div class="h-3 bg-pink-200 rounded w-1/2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Error State -->
+                    <p id="profile-error" class="text-red-600 font-semibold hidden"></p>
+                    <!-- Success State (Injected via JS) -->
+                    <div id="profile-card-container" class="w-full hidden"></div>
+                </div>
+
+                <button id="continue-btn" onclick="goToStep2()" disabled class="w-full py-4 text-lg font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg shadow-lg transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100">
+                    🔍 Continuar Análisis
+                </button>
+            </div>
+
+            <!-- STEP 2: LOADING / SCANNING -->
+            <div id="step-2" class="text-center space-y-6 hidden animate-fade-in">
+                <h2 class="text-2xl font-bold text-black">Analizando Perfil...</h2>
+                
+                <div id="step2-profile-container">
+                    <!-- Profile cloned here -->
+                </div>
+
+                <div class="w-full space-y-3">
+                    <p class="font-mono text-sm text-gray-700">
+                        [ESCANEANDO] Cruzando bases de datos... (<span id="loading-progress-text">0</span>%)
+                    </p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="loading-bar" class="bg-gradient-to-r from-pink-500 to-purple-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="posts-container-wrapper" class="w-full space-y-3 animate-fade-in hidden">
+                    <p class="font-mono text-xs text-yellow-600 text-center">[ESTADO] Buscando cuentas conectadas...</p>
+                    <div id="posts-grid" class="grid grid-cols-3 gap-2">
+                        <!-- Posts injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: RESULTS / UPSELL -->
+            <div id="step-3" class="text-center space-y-6 hidden animate-fade-in">
+                <div class="flex items-center justify-center gap-2 text-green-600 font-bold text-xl">
+                    <i data-lucide="check-circle" class="w-6 h-6"></i> Análisis Completo
+                </div>
+                
+                <div id="step3-profile-container">
+                    <!-- Profile cloned here -->
+                </div>
+
+                <!-- Logs Box -->
+                <div id="logs-box" class="p-3 bg-gray-100 border border-gray-300 rounded-lg font-mono text-sm text-left hidden">
+                    <p><span class="text-green-600 font-bold">[REGISTRO_SISTEMA]</span> Nueva actividad detectada:</p>
+                    <p class="ml-4"><span class="text-blue-600">[INSTAGRAM]</span> A <span id="log-user-1">usuario</span> le gustó tu foto.</p>
+                    <p class="ml-4"><span class="text-blue-600">[INSTAGRAM]</span> Nuevo mensaje de <span id="log-user-2">usuario</span>.</p>
+                </div>
+
+                <!-- Interaction List -->
+                <div id="interactions-list" class="space-y-3 text-left">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Target Actions (Typing/Message) -->
+                <div class="space-y-3 text-left">
+                    <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <img id="target-avatar-typing" src="" class="w-10 h-10 rounded-full object-cover">
+                        <div class="flex-1 text-sm">
+                            <p class="text-gray-800"><span class="font-semibold" id="target-username-typing"></span> está escribiendo...</p>
+                            <p class="text-gray-500 text-xs">Justo ahora</p>
+                        </div>
+                        <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse ml-auto"></span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <img id="target-avatar-msg" src="" class="w-10 h-10 rounded-full object-cover">
+                        <div class="flex-1 text-sm">
+                            <p class="text-gray-800"><span class="font-semibold" id="target-username-msg"></span> envió un mensaje nuevo.</p>
+                            <p class="text-gray-500 text-xs">Hace 1 minuto</p>
+                        </div>
+                        <i data-lucide="message-circle" class="text-blue-500 ml-auto w-5 h-5"></i>
+                    </div>
+                </div>
+
+                <!-- Intercepted Content -->
+                <div class="space-y-5 text-left">
+                    <h2 class="text-xl font-bold text-black text-center">
+                        <span class="text-red-600">INTERCEPTADO:</span> 'Me gusta' sospechosos de <span id="target-username-header"></span>
+                    </h2>
+                    <div id="intercepted-list" class="space-y-5">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Monetizze Widget Container -->
+                <div class="bg-white p-5 rounded-lg shadow-xl text-center mt-8 border border-gray-200">
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-cyan-500 flex items-center justify-center mb-4">
+                        <i data-lucide="lock-open" class="text-white w-10 h-10"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800">
+                        <span class="text-yellow-600">🔓</span> DESBLOQUEAR REPORTE COMPLETO
+                    </h2>
+                    <p class="text-gray-600 mt-1 mb-6">
+                        Obtén acceso instantáneo al reporte completo con fotos sin censura y el historial de conversación completo.
+                    </p>
+                    
+                    <div class="bg-red-100 border-2 border-red-500 text-red-800 p-4 rounded-lg mt-5 mb-5">
+                        <div class="flex items-center justify-center gap-2">
+                            <i data-lucide="alert-triangle" class="text-red-600 w-5 h-5"></i>
+                            <h3 class="font-bold">EL REPORTE SE ELIMINARÁ EN:</h3>
+                        </div>
+                        <p id="countdown-timer" class="text-4xl font-mono font-bold my-1 text-red-600">05:00</p>
+                        <p class="text-xs text-red-700">
+                            Cuando el tiempo expire, este reporte se eliminará permanentemente por razones de privacidad. Esta oferta no se podrá recuperar más tarde.
+                        </p>
+                    </div>
+
+                    <!-- 2. IFRAME MONETIZZE ONE CLICK (BODY) -->
+                    <div id="monetizze-widget-area" class="w-full pt-4 flex justify-center">
+                        <iframe class="iframeUpsell" data-chave="85bc1eecd148bce94ad5bd91976d0b7d"></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+        
+        <footer class="py-4 mt-4">
+            <p class="text-xs text-white">© 2024. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS LOGIC -->
+    <script>
+        // --- DATA ---
+        const FEMALE_PROFILES = ["@jessy_nutty", "@alexis_30", "@izes", "@maryjane434", "@emma.whistle32", "@celina_anderson467", "@letty.miriah99"];
+        const FEMALE_IMAGES = ["/images/male/perfil/1.jpg", "/images/male/perfil/2.jpg", "/images/male/perfil/3.jpg", "/images/male/perfil/4.jpg", "/images/male/perfil/5.jpg", "/images/male/perfil/6.jpg", "/images/male/perfil/7.jpg", "/images/male/perfil/8.jpg", "/images/male/perfil/9.jpg"];
+        
+        const MALE_PROFILES = ["@john.doe92", "@mike_anderson", "@chris_williams", "@danny.smith", "@liam.baker", "@noah_carter", "@ryan_hills"];
+        const MALE_IMAGES = ["/images/female/perfil/1.jpg", "/images/female/perfil/2.jpg", "/images/female/perfil/3.jpg", "/images/female/perfil/4.jpg", "/images/female/perfil/5.jpg", "/images/female/perfil/6.jpg", "/images/female/perfil/7.jpg", "/images/female/perfil/8.jpeg", "/images/female/perfil/9.jpg"];
+
+        const LIKED_BY_MALE_PHOTOS = ["/images/male/liked/male-liked-photo-1.jpg", "/images/male/liked/male-liked-photo-2.jpeg", "/images/male/liked/male-liked-photo-3.jpeg"];
+        const LIKED_BY_MALE_STORIES = ["/images/male/liked/male-liked-story-1.jpg", "/images/male/liked/male-liked-story-2.jpg", "/images/male/liked/male-liked-story-3.jpg"];
+        
+        const LIKED_BY_FEMALE_PHOTOS = ["/images/female/liked/female-liked-photo-1.jpg", "/images/female/liked/female-liked-photo-2.jpg", "/images/female/liked/female-liked-photo-3.jpg"];
+        const LIKED_BY_FEMALE_STORIES = ["/images/female/liked/female-liked-story-1.jpg", "/images/female/liked/female-liked-story-2.jpg", "/images/female/liked/female-liked-story3.jpg"];
+
+        const INTERCEPTED_COMMENTS = ["Wow, te ves muy bien 🥰", "🫣😏", "Me estás calentando 🥵", "Me vuelves loco/a 😈"];
+
+        // --- STATE ---
+        let state = {
+            step: 1,
+            gender: null,
+            username: "",
+            profileData: null,
+            posts: [],
+            randomizedResults: [],
+            interceptedImages: []
+        };
+        
+        let debounceTimer;
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        // --- HELPERS ---
+        function sanitizeUsername(u) {
+            if(!u) return "";
+            u = u.trim();
+            if(u.startsWith('@')) u = u.slice(1);
+            return u.toLowerCase().replace(/[^a-z0-9._]/g, "");
+        }
+
+        function shuffleAndPick(arr, num) {
+            return [...arr].sort(() => 0.5 - Math.random()).slice(0, num);
+        }
+
+        // --- STEP 1 LOGIC ---
+        function selectGender(gender) {
+            state.gender = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.className = "gender-btn p-3 rounded-xl border-2 flex flex-col items-center justify-center space-y-2 transition-all duration-200 border-gray-200 bg-white hover:border-gray-300 transform scale-100";
+            });
+            const activeBtn = document.getElementById(`btn-${gender}`);
+            activeBtn.className = "gender-btn p-3 rounded-xl border-2 flex flex-col items-center justify-center space-y-2 transition-all duration-200 border-indigo-500 bg-indigo-50 shadow-md transform scale-105";
+        }
+
+        function handleInput(input) {
+            state.username = input.value;
+            const sanitized = sanitizeUsername(state.username);
+            
+            document.getElementById('profile-error').classList.add('hidden');
+            document.getElementById('profile-card-container').classList.add('hidden');
+            document.getElementById('continue-btn').disabled = true;
+
+            if (debounceTimer) clearTimeout(debounceTimer);
+            if (sanitized.length < 3) return;
+
+            document.getElementById('profile-loading').classList.remove('hidden');
+
+            debounceTimer = setTimeout(() => {
+                fetchProfile(sanitized);
+            }, 1200);
+        }
+
+        async function fetchProfile(username) {
+            try {
+                const response = await fetch("/api/instagram/profile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username }),
+                });
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.error || "Perfil no encontrado o privado.");
+                }
+
+                state.profileData = result.profile;
+                renderProfileCard(state.profileData, 'profile-card-container');
+                document.getElementById('profile-loading').classList.add('hidden');
+                document.getElementById('profile-card-container').classList.remove('hidden');
+                document.getElementById('continue-btn').disabled = false;
+
+            } catch (err) {
+                document.getElementById('profile-loading').classList.add('hidden');
+                const errEl = document.getElementById('profile-error');
+                errEl.innerText = "Error: Perfil no encontrado o privado";
+                errEl.classList.remove('hidden');
+                state.profileData = null;
+            }
+        }
+
+        function renderProfileCard(profile, containerId) {
+            const container = document.getElementById(containerId);
+            const imageUrl = profile.profile_pic_url || "/placeholder.svg";
+            
+            container.innerHTML = `
+                <div class="p-4 rounded-lg border-2 border-green-500/50 text-white animate-fade-in relative overflow-hidden profile-card-bg">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-4 text-left">
+                            <img src="${imageUrl}" class="w-14 h-14 rounded-full object-cover filter grayscale bg-gray-700">
+                            <div>
+                                <p class="text-green-400 font-bold text-sm">Perfil de Instagram Detectado</p>
+                                <p class="font-bold text-lg text-white">@${profile.username}</p>
+                                <p class="text-gray-400 text-sm">${profile.media_count} publicaciones • ${profile.follower_count} seguidores</p>
+                            </div>
+                        </div>
+                        <div class="w-7 h-7 rounded-full border-2 border-green-400 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+                        </div>
+                    </div>
+                    ${profile.biography ? `<div class="border-t border-green-500/20 mt-3 pt-3 text-left"><p class="text-gray-300 text-sm">${profile.biography}</p></div>` : ''}
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // --- STEP 2 LOGIC ---
+        function goToStep2() {
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+            
+            // Clone profile to step 2
+            renderProfileCard(state.profileData, 'step2-profile-container');
+            
+            // Start Fetching Posts
+            fetchPosts();
+
+            // Progress Bar Animation
+            let progress = 0;
+            const interval = setInterval(() => {
+                if (progress >= 90) clearInterval(interval);
+                progress += Math.random() * 20;
+                if(progress > 90) progress = 90;
+                
+                document.getElementById('loading-progress-text').innerText = Math.floor(progress);
+                document.getElementById('loading-bar').style.width = `${progress}%`;
+            }, 400);
+
+            // Transition to Step 3
+            setTimeout(() => {
+                document.getElementById('loading-progress-text').innerText = "100";
+                document.getElementById('loading-bar').style.width = "100%";
+                setTimeout(goToStep3, 1000);
+            }, 25000); // 25 seconds total simulation
+        }
+
+        async function fetchPosts() {
+            try {
+                const response = await fetch("/api/instagram/posts", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username: state.profileData.username }),
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.posts && data.posts.length > 0) {
+                        state.posts = data.posts.slice(0, 9);
+                        startDisplayingPosts();
+                    }
+                }
+            } catch (error) {
+                console.error("Error posts:", error);
+            }
+        }
+
+        function startDisplayingPosts() {
+            const container = document.getElementById('posts-container-wrapper');
+            container.classList.remove('hidden');
+            const grid = document.getElementById('posts-grid');
+            
+            // Fill with placeholders first
+            grid.innerHTML = Array(9).fill('<div class="aspect-square rounded-lg bg-gray-300 animate-pulse"></div>').join('');
+            
+            let visibleCount = 0;
+            const postInterval = setInterval(() => {
+                if (visibleCount >= state.posts.length) {
+                    clearInterval(postInterval);
+                    return;
+                }
+                
+                const post = state.posts[visibleCount];
+                const imgUrl = post.imageUrl || "/placeholder.svg";
+                const div = document.createElement('div');
+                div.className = "aspect-square rounded-lg overflow-hidden bg-gray-200 animate-fade-in";
+                div.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover" onerror="this.src='/placeholder.svg'">`;
+                
+                const placeholders = grid.querySelectorAll('.animate-pulse');
+                if(placeholders[0]) {
+                    grid.replaceChild(div, placeholders[0]);
+                }
+                
+                visibleCount++;
+            }, 2800); // Reveal one post every 2.8s
+        }
+
+        // --- STEP 3 LOGIC ---
+        function goToStep3() {
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-3').classList.remove('hidden');
+
+            // 1. Clone profile
+            renderProfileCard(state.profileData, 'step3-profile-container');
+
+            // 2. Generate Randomized Data
+            generateResults();
+
+            // 3. Render Logs & Lists
+            renderLogsAndLists();
+
+            // 4. Start Timer
+            startCountdown();
+        }
+
+        function generateResults() {
+            let profiles = FEMALE_PROFILES;
+            let images = FEMALE_IMAGES;
+            let likedPhotos = LIKED_BY_MALE_PHOTOS.concat(LIKED_BY_MALE_STORIES);
+
+            if (state.gender === 'female') {
+                profiles = MALE_PROFILES;
+                images = MALE_IMAGES;
+                likedPhotos = LIKED_BY_FEMALE_PHOTOS.concat(LIKED_BY_FEMALE_STORIES);
+            }
+
+            const randomUsernames = shuffleAndPick(profiles, 3);
+            const randomImages = shuffleAndPick(images, 3);
+            
+            state.randomizedResults = randomUsernames.map((u, i) => ({
+                username: u,
+                image: randomImages[i % randomImages.length],
+                type: Math.random() > 0.5 ? 'like' : 'message'
+            }));
+
+            const randomIntercepted = shuffleAndPick(likedPhotos, 4);
+            const randomComments = shuffleAndPick(INTERCEPTED_COMMENTS, 4);
+            
+            state.interceptedImages = randomIntercepted.map((img, i) => ({
+                image: img,
+                comment: randomComments[i % randomComments.length]
+            }));
+        }
+
+        function renderLogsAndLists() {
+            // Logs
+            const logsBox = document.getElementById('logs-box');
+            if(state.randomizedResults.length > 0) {
+                logsBox.classList.remove('hidden');
+                document.getElementById('log-user-1').innerText = state.randomizedResults[0].username;
+                document.getElementById('log-user-2').innerText = state.randomizedResults[1]?.username || state.randomizedResults[0].username;
+            }
+
+            // Interactions List
+            const listContainer = document.getElementById('interactions-list');
+            listContainer.innerHTML = state.randomizedResults.map((item, i) => `
+                <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <img src="${item.image}" onerror="this.src='/placeholder.svg'" class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1 text-sm">
+                        <p class="text-gray-800">
+                            <span class="font-semibold">${item.username}</span> 
+                            ${i < 2 ? "le gustó tu foto" : "te envió un mensaje"}
+                        </p>
+                        <p class="text-gray-500 text-xs">Hace ${[1, 2, 5][i]} minutos</p>
+                    </div>
+                    ${i < 2 
+                        ? '<i data-lucide="heart" class="text-pink-500 w-5 h-5"></i>' 
+                        : '<i data-lucide="message-circle" class="text-blue-500 w-5 h-5"></i>'}
+                </div>
+            `).join('');
+
+            // Target Actions (Static Placeholders with Real Data)
+            const targetImg = state.profileData.profile_pic_url || "/placeholder.svg";
+            const targetName = state.profileData.username;
+            
+            document.getElementById('target-avatar-typing').src = targetImg;
+            document.getElementById('target-username-typing').innerText = targetName;
+            
+            document.getElementById('target-avatar-msg').src = targetImg;
+            document.getElementById('target-username-msg').innerText = targetName;
+            
+            document.getElementById('target-username-header').innerText = targetName;
+
+            // Intercepted Images
+            const interceptedContainer = document.getElementById('intercepted-list');
+            interceptedContainer.innerHTML = state.interceptedImages.map((item, i) => `
+                <div class="p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <div class="relative w-full h-56 rounded-md overflow-hidden">
+                        <img src="${item.image}" class="w-full h-full object-cover filter blur-sm">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                            <i data-lucide="lock" class="text-white w-10 h-10"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 mt-2">
+                        <i data-lucide="heart" class="text-pink-500 w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">${i % 2 === 0 ? "1.2K" : "876"} me gusta</span>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2">
+                        <img src="${targetImg}" class="w-8 h-8 rounded-full object-cover">
+                        <p class="text-sm text-gray-800">
+                            <b>${targetName}</b> ${item.comment}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        function startCountdown() {
+            let timeLeft = 300; // 5 min
+            const el = document.getElementById('countdown-timer');
+            
+            const timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    return;
+                }
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const s = (timeLeft % 60).toString().padStart(2, '0');
+                el.innerText = `${m}:${s}`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
